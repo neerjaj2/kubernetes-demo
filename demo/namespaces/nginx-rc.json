@@ -1,0 +1,66 @@
+{
+    "kind": "ReplicationController",
+    "apiVersion": "v1",
+    "metadata": {
+      "name": "nginx-frontend",
+      "namespace": "qa",
+      "labels": {
+        "name": "nginx-frontend"
+      }         
+    },
+    "spec": {
+      "replicas": 1,
+      "selector": {
+          "name": "nginx-frontend"
+      },
+      "template": {
+        "metadata": {
+          "labels": {
+            "name": "nginx-frontend",
+	    "namespace": "qa"
+          }
+        },                                                    
+        "spec": {
+          "volumes": [
+          {
+            "name": "data-volume",
+            "emptyDir": {}
+          }
+          ],
+          "containers": [
+          {
+            "name": "nginx-frontend",
+            "image": "nginx",
+            "env": [
+              {
+                "name": "APPLICATION_ENVIRONMENT",
+                "value": "QA"
+              }
+            ],
+            "ports": [
+              {
+                "hostPort": 1000,
+                "containerPort": 80
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "40m"
+              },
+              "requests": {
+                "cpu": "40m"
+              }
+            },   
+            "volumeMounts": [
+              {
+                "name": "data-volume",
+                "mountPath": "/var/tmp"
+              }
+            ],
+            "imagePullPolicy": "Always"
+          }
+        ]
+      }
+    }
+  }
+}

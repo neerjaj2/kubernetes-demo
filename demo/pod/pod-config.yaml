@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ""                      # The name of this pod
+  labels:                       # Labels are arbitary key:value pairs that can be used by replication controllers and services for grouping and targetting pods   
+    name: ""
+  namespace: ""                 # The namespace of the pod, if not specified pod will be launched in default namespace
+spec:
+  containers:                   # A list of containers belonging to the pod. There must be atleast one container in a pod
+    -
+      args:                     # A command array containing arguments to the entrypoint. 
+        - ""
+      command:                  # The entrypoint array. The docker image's entrypoint is used if this is not provided.
+        - ""
+      env:                      # A list of environment variables in key:value format to set in the container
+        -
+          name: ""
+          value: ""
+      image: ""                 # Docker image name
+      imagePullPolicy: ""       # The image pull policy, accepted values are: Always, Never or IfNotPresent
+      name: ""                  # Name of the Container
+      ports:                    # A list of ports to expose from the container.
+        -
+          containerPort: 0      # The port number to expose on the pod's IP address
+          name: ""              # The name for the port that can be referred to by services
+          protocol: ""          # Protocol for the port. Must be UDP or TCP. Default is TCP
+      resources:                # The compute resources required by this container
+        cpu: ""                 # CPUs to reserve for each container. Default is whole CPUs; scale suffixes (e.g. `100m` for one hundred milli-CPUs) are supported. 
+        memory: ""              # 100Mi` for one hundred mebibytes
+  restartPolicy: ""             # Restart policy for all containers within the pod. Options are: Always, OnFailure or Never
+  volumes:                      # A list of volumes that can be mounted by containers belonging to the pod. You must specify a `name` and a source for each volume. The container must also include a `volumeMount` with matching `name`.
+    -
+      emptyDir:                 # A temporary directory that shares a pod's lifetime
+        medium: ""              # The type of storage used to back the volume. Must be an empty string (default) or Memory
+      name: ""
+
+~                                                                                                         

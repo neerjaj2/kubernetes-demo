@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata: 
+ name: webapp		# The name to give to this service.
+spec: 
+ ports: 		# The ports to map. port is the service port to expose on the cluster IP. targetPort is the port to target on the pods that are part of this service.
+  - 
+   port: 80
+   targetPort: 80
+ selector: 		# The label key:value pair that defines the pods to target.
+  string: string
+ type: LoadBalancer	# This provides an externally-accessible IP address that sends traffic to the correct port on your cluster nodes. 

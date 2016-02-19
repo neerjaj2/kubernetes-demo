@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginxtomcat
+  labels:
+    app: web
+spec:
+  containers:
+    - name: webtier
+      image: nginx
+      ports:
+        - containerPort: 80
+    - name: apptier
+      image: tomcat
+      ports:
+        - containerPort: 8080

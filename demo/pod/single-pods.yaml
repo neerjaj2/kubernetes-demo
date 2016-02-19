@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+    app: website
+spec:
+  containers:
+    - image: nginx
+      name: nginx-test
+      ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP

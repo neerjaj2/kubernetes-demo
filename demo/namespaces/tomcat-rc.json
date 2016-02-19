@@ -1,0 +1,66 @@
+{
+    "kind": "ReplicationController",
+    "apiVersion": "v1",
+    "metadata": {
+      "name": "tomcat-frontend",
+      "namespace": "qa",
+      "labels": {
+        "name": "tomcat-frontend"
+      }         
+    },
+    "spec": {
+      "replicas": 1,
+      "selector": {
+          "name": "tomcat-frontend"
+      },
+      "template": {
+        "metadata": {
+          "labels": {
+            "name": "tomcat-frontend",
+	    "namespace": "qa"
+          }
+        },                                                    
+        "spec": {
+          "volumes": [
+          {
+            "name": "data-volume",
+            "emptyDir": {}
+          }
+          ],
+          "containers": [
+          {
+            "name": "tomcat-frontend",
+            "image": "tomcat",
+            "env": [
+              {
+                "name": "APPLICATION_ENVIRONMENT",
+                "value": "QA"
+              }
+            ],
+            "ports": [
+              {
+                "hostPort": 1000,
+                "containerPort": 80
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "40m"
+              },
+              "requests": {
+                "cpu": "40m"
+              }
+            },   
+            "volumeMounts": [
+              {
+                "name": "data-volume",
+                "mountPath": "/var/tmp"
+              }
+            ],
+            "imagePullPolicy": "Always"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: update-demo-app1
+spec:
+  replicas: 2
+  selector:
+    name: update-demo
+    version: app1
+  template:
+    metadata:
+      labels:
+        name: update-demo
+        version: app1
+    spec:
+      containers:
+      - image: neerjaj2/rollingupdate-apache:v1
+        name: update-demo
+        ports:
+        - containerPort: 80
+          protocol: TCP

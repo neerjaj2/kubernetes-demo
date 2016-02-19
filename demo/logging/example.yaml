@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: logging-demo
+  name: logging-demo
+spec:
+  containers:
+  - name: logging-demo
+    image: ubuntu:14.04
+    args:
+    - bash
+    - -c
+    - 'i="0"; while true; do echo -n "`hostname`: $i: ";date; sleep
+      0.1; i=$[$i+1]; done'
